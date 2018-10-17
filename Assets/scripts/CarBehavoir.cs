@@ -12,8 +12,15 @@ public class CarBehavoir : MonoBehaviour {
 	public double Speed { get{return vehicle.RelativeSpeed;}}
 	public double TurnAngle { get{return vehicle.TurnAngle;}}
 
+    public KeyCode moveUp;
+    public KeyCode moveDown;
+    public KeyCode moveLeft;
+    public KeyCode moveRight;
+
 	Collider2D collider;
 	Rigidbody2D rigidBody2D;
+
+
 
 
 
@@ -36,15 +43,15 @@ public class CarBehavoir : MonoBehaviour {
 		// If not paused
 		if (Time.timeScale == 1) {
 
-			if (Input.GetKey ("up")) {
+			if (Input.GetKey (this.moveUp)) {
 				vehicle.Accelerate ();
-			} else if (Input.GetKey ("down")) {
+			} else if (Input.GetKey (this.moveDown)) {
 				vehicle.AccelerateBack ();
 			}
 
-			if (Input.GetKey ("left")) {
+			if (Input.GetKey (this.moveLeft)) {
 				vehicle.TurnLeft ();
-			} else if (Input.GetKey ("right")) {
+			} else if (Input.GetKey (this.moveRight)) {
 				vehicle.TurnRight ();
 			}
 			else {

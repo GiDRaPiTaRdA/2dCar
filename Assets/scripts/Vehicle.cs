@@ -1,4 +1,5 @@
 ﻿using System;
+using NUnit.Framework;
 using UnityEngine;
 
 public class Vehicle
@@ -9,12 +10,37 @@ public class Vehicle
     private const double friction = 0.005;
 
 	private double wheelAngle = 0;
+    private double speed;
 
     public Vector3 Origin { get; private set; }
     public Vector3 Size { get; private set; }
 
-    public double Speed { get; private set; }
-	public double RelativeSpeed { get { return this.Speed / ScaleFunction(); } }
+    private float maxSpeed = 0.3f;
+
+    public double Speed
+    {
+        get { return this.speed; }
+        private set
+        {
+            if (value > 0)
+            {
+                if (value > this.maxSpeed)
+                    this.speed = this.maxSpeed;
+                else
+                    this.speed = value;
+            }
+            else
+            {
+                
+                if (value < -this.maxSpeed)
+                    this.speed = -this.maxSpeed;
+                else
+                    this.speed = value;
+            }
+        }
+    }
+
+    public double RelativeSpeed { get { return this.Speed / ScaleFunction(); } }
     public double Direction { get; private set; }   // Rad
 	public double WheelAngle {
 		get{

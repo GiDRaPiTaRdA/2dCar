@@ -10,8 +10,6 @@ public class uiManager : MonoBehaviour {
 	public Text speedText;
 	public Text angleText;
 
-
-
 	// Use this for initialization
 	void Start () {
 	}
